@@ -1,9 +1,9 @@
 ---
-title: "Why corporate wellness fails — and what actually works"
-pubDate: "2026-05-03"
+title: 'Why corporate wellness fails — and what actually works'
+pubDate: '2026-05-03'
 description: "Ping-pong tables and meditation apps don't create psychological safety. Here's what does."
-category: "Corporate Wellness"
-heroEmoji: "🌿"
+category: 'Corporate Wellness'
+heroEmoji: '🌿'
 ---
 
 Corporate wellness is not a checklist. It is an invitation to make space for people to feel seen, understood, and supported.

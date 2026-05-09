@@ -33,7 +33,7 @@ html {
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: var(--cream);
   color: var(--ink);
   line-height: 1.6;
@@ -86,7 +86,7 @@ input {
 }
 
 .ih-loader-brand {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.85rem;
   letter-spacing: 0.25em;
@@ -166,7 +166,7 @@ input {
 }
 
 .ih-nav-logo {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--ink);
@@ -299,7 +299,7 @@ input {
 }
 
 .ih-label::before {
-  content: "";
+  content: '';
   width: 20px;
   height: 1px;
   background: var(--lavender);
@@ -339,7 +339,7 @@ input {
 }
 
 .ih-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 300;
   line-height: 1.12;
@@ -376,7 +376,7 @@ input {
   display: inline-block;
   padding: 0.85rem 2rem;
   border-radius: 100px;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -482,21 +482,9 @@ input {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(
-      ellipse 80% 60% at 50% 40%,
-      rgba(155, 142, 196, 0.13) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 50% 40% at 15% 80%,
-      rgba(91, 154, 160, 0.08) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 40% 50% at 85% 20%,
-      rgba(201, 168, 76, 0.08) 0%,
-      transparent 60%
-    );
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(155, 142, 196, 0.13) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(91, 154, 160, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 85% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
 }
 
 .ih-hero-float {
@@ -585,7 +573,7 @@ input {
 }
 
 .ih-hero-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3.2rem, 9vw, 6rem);
   font-weight: 300;
   line-height: 1.02;
@@ -724,7 +712,7 @@ input {
 }
 
 .ih-portrait-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem;
   font-weight: 400;
   color: var(--ink);
@@ -792,7 +780,7 @@ input {
 }
 
 .ih-service-card::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -829,7 +817,7 @@ input {
 }
 
 .ih-service-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.25rem;
   font-weight: 400;
   color: var(--ink);
@@ -872,14 +860,10 @@ input {
 }
 
 .ih-event-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(155, 142, 196, 0.04),
-    rgba(201, 168, 76, 0.04)
-  );
+  background: linear-gradient(135deg, rgba(155, 142, 196, 0.04), rgba(201, 168, 76, 0.04));
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -900,7 +884,7 @@ input {
 }
 
 .ih-event-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
   font-weight: 400;
   color: var(--ink);
@@ -952,21 +936,13 @@ input {
 }
 
 .ih-corporate::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(
-      ellipse 60% 70% at 80% 50%,
-      rgba(155, 142, 196, 0.12) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 40% 50% at 10% 30%,
-      rgba(91, 154, 160, 0.08) 0%,
-      transparent 60%
-    );
+    radial-gradient(ellipse 60% 70% at 80% 50%, rgba(155, 142, 196, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 30%, rgba(91, 154, 160, 0.08) 0%, transparent 60%);
 }
 
 .ih-corporate-inner {
@@ -1023,7 +999,7 @@ input {
 }
 
 .ih-corp-quote {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.4);
@@ -1061,7 +1037,7 @@ input {
 }
 
 .ih-step-num {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 2.8rem;
   font-weight: 300;
   color: rgba(155, 142, 196, 0.2);
@@ -1110,7 +1086,7 @@ input {
 }
 
 .ih-pillar-letter {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 4rem;
   font-weight: 300;
   color: var(--lavender);
@@ -1120,7 +1096,7 @@ input {
 }
 
 .ih-pillar-word {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.3rem;
   font-weight: 400;
   color: var(--ink);
@@ -1259,7 +1235,7 @@ input {
   background: var(--lavender-pale);
   border-radius: 12px;
   border: 1px solid rgba(155, 142, 196, 0.2);
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1rem;
   color: var(--ink-soft);
@@ -1333,7 +1309,7 @@ input {
 }
 
 .ih-price-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   font-weight: 400;
   color: var(--ink);
@@ -1376,7 +1352,7 @@ input {
 }
 
 .ih-price-list li::before {
-  content: "✦";
+  content: '✦';
   color: var(--lavender);
   font-size: 0.5rem;
   margin-top: 4px;
@@ -1389,7 +1365,7 @@ input {
   color: var(--stone);
   margin-top: 2rem;
   font-style: italic;
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .ih-shop {
@@ -1425,35 +1401,19 @@ input {
 }
 
 .ih-shop-thumb-1 {
-  background: linear-gradient(
-    135deg,
-    rgba(155, 142, 196, 0.12),
-    rgba(196, 114, 142, 0.08)
-  );
+  background: linear-gradient(135deg, rgba(155, 142, 196, 0.12), rgba(196, 114, 142, 0.08));
 }
 
 .ih-shop-thumb-2 {
-  background: linear-gradient(
-    135deg,
-    rgba(201, 168, 76, 0.12),
-    rgba(255, 220, 100, 0.08)
-  );
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(255, 220, 100, 0.08));
 }
 
 .ih-shop-thumb-3 {
-  background: linear-gradient(
-    135deg,
-    rgba(91, 154, 160, 0.1),
-    rgba(155, 142, 196, 0.08)
-  );
+  background: linear-gradient(135deg, rgba(91, 154, 160, 0.1), rgba(155, 142, 196, 0.08));
 }
 
 .ih-shop-thumb-4 {
-  background: linear-gradient(
-    135deg,
-    rgba(26, 22, 37, 0.06),
-    rgba(155, 142, 196, 0.06)
-  );
+  background: linear-gradient(135deg, rgba(26, 22, 37, 0.06), rgba(155, 142, 196, 0.06));
 }
 
 .ih-shop-body {
@@ -1470,7 +1430,7 @@ input {
 }
 
 .ih-shop-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
   font-weight: 400;
   color: var(--ink);
@@ -1497,7 +1457,7 @@ input {
   font-size: 0.82rem;
   color: var(--ink-soft);
   font-style: italic;
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .ih-testi {
@@ -1528,7 +1488,7 @@ input {
 }
 
 .ih-testi-text {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.05rem;
   font-weight: 300;
   font-style: italic;
@@ -1592,27 +1552,15 @@ input {
 }
 
 .ih-blog-thumb-l {
-  background: linear-gradient(
-    135deg,
-    rgba(155, 142, 196, 0.14),
-    rgba(155, 142, 196, 0.04)
-  );
+  background: linear-gradient(135deg, rgba(155, 142, 196, 0.14), rgba(155, 142, 196, 0.04));
 }
 
 .ih-blog-thumb-g {
-  background: linear-gradient(
-    135deg,
-    rgba(201, 168, 76, 0.12),
-    rgba(201, 168, 76, 0.03)
-  );
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(201, 168, 76, 0.03));
 }
 
 .ih-blog-thumb-t {
-  background: linear-gradient(
-    135deg,
-    rgba(91, 154, 160, 0.12),
-    rgba(91, 154, 160, 0.03)
-  );
+  background: linear-gradient(135deg, rgba(91, 154, 160, 0.12), rgba(91, 154, 160, 0.03));
 }
 
 .ih-blog-body {
@@ -1629,7 +1577,7 @@ input {
 }
 
 .ih-blog-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--ink);
@@ -1773,7 +1721,7 @@ input {
   padding: 0.78rem 1rem;
   border: 1px solid rgba(155, 142, 196, 0.22);
   border-radius: 10px;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   color: var(--ink);
   background: var(--cream);
@@ -1808,7 +1756,7 @@ input {
 }
 
 .ih-footer-logo {
-  font-family: "Cormorant Garamond", serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.4rem;
   color: var(--white);
   margin-bottom: 0.4rem;

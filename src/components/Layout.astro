@@ -1,18 +1,25 @@
 ---
 const { title } = Astro.props;
 import '../styles/global.css';
+const baseURL = import.meta.env.BASE_URL;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title ? `${title} · Intuitive Heart` : 'Intuitive Heart by Dhriti'}</title>
-    <meta name="description" content="Dhriti offers Tarot readings, NLP coaching, clarity sessions and corporate wellness from Juhu, Mumbai. Read her blog to explore inner work, symbols and meaningful change." />
+    <meta
+      name="description"
+      content="Dhriti offers Tarot readings, NLP coaching, clarity sessions and corporate wellness from Juhu, Mumbai. Read her blog to explore inner work, symbols and meaningful change."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./global.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="ih-loader">
@@ -28,7 +35,7 @@ import '../styles/global.css';
     </div>
 
     <nav class="ih-nav" id="ihNav">
-      <a href="/" class="ih-nav-logo">Intuitive Heart <em>by Dhriti</em></a>
+      <a href={baseURL} class="ih-nav-logo">Intuitive Heart <em>by Dhriti</em></a>
       <ul class="ih-nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Sessions</a></li>
@@ -65,7 +72,10 @@ import '../styles/global.css';
     <footer class="ih-footer">
       <div class="ih-footer-inner">
         <div class="ih-footer-logo">Intuitive Heart <em>by Dhriti</em></div>
-        <div class="ih-footer-tagline">Tarot Readings · NLP Coaching · Clarity Sessions · Corporate Wellness · Events & Experiences · The Shop</div>
+        <div class="ih-footer-tagline">
+          Tarot Readings · NLP Coaching · Clarity Sessions · Corporate Wellness · Events &
+          Experiences · The Shop
+        </div>
         <ul class="ih-footer-links">
           <li><a href="#about">About</a></li>
           <li><a href="#services">Sessions</a></li>
@@ -77,11 +87,17 @@ import '../styles/global.css';
           <li><a href="#blog">Blog</a></li>
           <li><a href="#contact">Connect</a></li>
         </ul>
-        <div class="ih-footer-copy">© 2026 Intuitive Heart by Dhriti · Juhu, Mumbai · All rights reserved</div>
+        <div class="ih-footer-copy">
+          © 2026 Intuitive Heart by Dhriti · Juhu, Mumbai · All rights reserved
+        </div>
       </div>
     </footer>
 
-    <button id="ih-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+    <button
+      id="ih-back-top"
+      onclick="window.scrollTo({top:0,behavior:'smooth'})"
+      aria-label="Back to top">↑</button
+    >
 
     <script type="module" set:load>
       const loader = document.getElementById('ih-loader');
@@ -108,11 +124,14 @@ import '../styles/global.css';
         ihMob?.classList.remove('open');
       };
 
-      const ihObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
+      const ihObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.1 }
+      );
 
       document.querySelectorAll('.ih-fade').forEach((el) => ihObserver.observe(el));
 
@@ -120,7 +139,12 @@ import '../styles/global.css';
         const item = button.closest('.ih-acc-item');
         if (!item) return;
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.ih-acc-item').forEach((entry) => entry.classList.remove('open'));
+        document
+          .querySelectorAll('.ih-acc-item')
+          .forEach((entry) => entry.classList.remove('open'));
+        document
+          .querySelectorAll('.ih-acc-item')
+          .forEach((entry) => entry.classList.remove('open'));
         if (!isOpen) item.classList.add('open');
       };
 

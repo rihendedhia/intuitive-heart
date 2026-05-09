@@ -1,4 +1,7 @@
 ---
+// Import the base path from the config
+const baseURL = import.meta.env.BASE_URL;
+
 interface Props {
   post: {
     slug: string;
@@ -11,15 +14,17 @@ interface Props {
   };
 }
 const { post } = Astro.props;
-const thumbClass = post.frontmatter.category === 'Tarot'
-  ? 'ih-blog-thumb-l'
-  : post.frontmatter.category === 'NLP'
-    ? 'ih-blog-thumb-g'
-    : post.frontmatter.category === 'Corporate Wellness'
-      ? 'ih-blog-thumb-t'
-      : 'ih-blog-thumb-l';
+const thumbClass =
+  post.frontmatter.category === 'Tarot'
+    ? 'ih-blog-thumb-l'
+    : post.frontmatter.category === 'NLP'
+      ? 'ih-blog-thumb-g'
+      : post.frontmatter.category === 'Corporate Wellness'
+        ? 'ih-blog-thumb-t'
+        : 'ih-blog-thumb-l';
 ---
-<a href={`/blog/${post.slug}`} class="ih-blog-card">
+
+<a href={`${baseURL}blog/${post.slug}/`} class="ih-blog-card">
   <div class={`ih-blog-thumb ${thumbClass}`}>{post.frontmatter.heroEmoji}</div>
   <div class="ih-blog-body">
     <div class="ih-blog-cat">{post.frontmatter.category}</div>

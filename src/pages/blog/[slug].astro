@@ -2,19 +2,21 @@
 import Layout from '../../components/Layout.astro';
 
 export async function getStaticPaths() {
-  return Object.entries(import.meta.glob('../../content/blog/*.md', { eager: true }))
-    .map(([path]) => ({
+  return Object.entries(import.meta.glob('../../content/blog/*.md', { eager: true })).map(
+    ([path]) => ({
       params: {
         slug: path.split('/').pop().replace(/\.md$/, ''),
       },
-    }));
+    })
+  );
 }
 
-const posts = Object.entries(import.meta.glob('../../content/blog/*.md', { eager: true }))
-  .map(([path, module]) => ({
+const posts = Object.entries(import.meta.glob('../../content/blog/*.md', { eager: true })).map(
+  ([path, module]) => ({
     slug: path.split('/').pop().replace(/\.md$/, ''),
     ...module,
-  }));
+  })
+);
 
 const post = posts.find((item) => item.slug === Astro.params.slug);
 if (!post) {
@@ -22,6 +24,7 @@ if (!post) {
 }
 const Content = post.default;
 ---
+
 <Layout title={post.frontmatter.title}>
   <section class="ih-article">
     <header class="ih-article-header">
@@ -29,7 +32,15 @@ const Content = post.default;
       <h1 class="ih-title">{post.frontmatter.title}</h1>
       <div class="ih-article-meta">
         <span>{post.frontmatter.author}</span>
-        <span>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        <span
+          >{
+            new Date(post.frontmatter.pubDate).toLocaleDateString('en-IN', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          }</span
+        >
       </div>
     </header>
     <div class="ih-article-body">

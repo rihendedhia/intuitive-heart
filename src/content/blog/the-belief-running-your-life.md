@@ -1,9 +1,9 @@
 ---
 title: "The one belief that's quietly running your life"
-pubDate: "2026-05-02"
+pubDate: '2026-05-02'
 description: "Most of us have a core limiting belief we've never examined. Here's how to find yours."
-category: "NLP"
-heroEmoji: "🧠"
+category: 'NLP'
+heroEmoji: '🧠'
 ---
 
 There is usually a small, repeated story living under the surface of our decisions. It might sound like "I'm not enough," "I have to do it perfectly," or "I should not be seen."

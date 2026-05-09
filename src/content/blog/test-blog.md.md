@@ -1,9 +1,9 @@
 ---
-title: "This is a test blog"
-pubDate: "2026-05-04"
+title: 'This is a test blog'
+pubDate: '2026-05-04'
 description: "Ping-pong tables and meditation apps don't create psychological safety. Here's what does."
-category: "Corporate Wellness"
-heroEmoji: "🌿"
+category: 'Corporate Wellness'
+heroEmoji: '🌿'
 ---
 
 Corporate wellness is not a checklist. It is an invitation to make space for people to feel seen, understood, and supported.

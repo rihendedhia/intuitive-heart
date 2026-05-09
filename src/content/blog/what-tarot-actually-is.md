@@ -1,9 +1,9 @@
 ---
 title: "What Tarot actually is — and what it isn't"
-pubDate: "2026-05-01"
-description: "A grounded look at how I use Tarot as a mirror, not a crystal ball."
-category: "Tarot"
-heroEmoji: "🃏"
+pubDate: '2026-05-01'
+description: 'A grounded look at how I use Tarot as a mirror, not a crystal ball.'
+category: 'Tarot'
+heroEmoji: '🃏'
 ---
 
 Tarot isn't about fixed predictions. It is an invitation to notice the hidden energy, the story you are telling yourself, and the next step you can take with greater clarity.

@@ -28,11 +28,11 @@ Example frontmatter:
 
 ```markdown
 ---
-title: "A gentle guide to intuitive inner work"
-pubDate: "2026-05-09"
-description: "Small practices for staying grounded, curious, and clear."
-category: "Tarot"
-heroEmoji: "✦"
+title: 'A gentle guide to intuitive inner work'
+pubDate: '2026-05-09'
+description: 'Small practices for staying grounded, curious, and clear.'
+category: 'Tarot'
+heroEmoji: '✦'
 ---
 
 Your post content goes here.
