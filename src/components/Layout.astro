@@ -1,0 +1,138 @@
+---
+const { title } = Astro.props;
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title ? `${title} · Intuitive Heart` : 'Intuitive Heart by Dhriti'}</title>
+    <meta name="description" content="Dhriti offers Tarot readings, NLP coaching, clarity sessions and corporate wellness from Juhu, Mumbai. Read her blog to explore inner work, symbols and meaningful change." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./global.css" />
+  </head>
+  <body>
+    <div id="ih-loader">
+      <div class="ih-loader-inner">
+        <span class="ih-loader-sigil">✦</span>
+        <div class="ih-loader-brand">Intuitive Heart by Dhriti</div>
+        <div class="ih-loader-dots">
+          <div class="ih-loader-dot"></div>
+          <div class="ih-loader-dot"></div>
+          <div class="ih-loader-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="ih-nav" id="ihNav">
+      <a href="/" class="ih-nav-logo">Intuitive Heart <em>by Dhriti</em></a>
+      <ul class="ih-nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Sessions</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#corporate">Corporate</a></li>
+        <li><a href="#nlp">NLP</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact" class="ih-nav-cta">Connect ↗</a></li>
+      </ul>
+      <button class="ih-hamburger" id="ihHamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <nav class="ih-mobile-nav" id="ihMobileNav">
+      <a href="#about" onclick="ihCloseMobile()">About</a>
+      <a href="#services" onclick="ihCloseMobile()">Sessions</a>
+      <a href="#events" onclick="ihCloseMobile()">Events</a>
+      <a href="#corporate" onclick="ihCloseMobile()">Corporate Wellness</a>
+      <a href="#nlp" onclick="ihCloseMobile()">NLP</a>
+      <a href="#pricing" onclick="ihCloseMobile()">Energy Exchange</a>
+      <a href="#shop" onclick="ihCloseMobile()">Shop</a>
+      <a href="#blog" onclick="ihCloseMobile()">Blog</a>
+      <a href="#contact" onclick="ihCloseMobile()">Connect ↗</a>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="ih-footer">
+      <div class="ih-footer-inner">
+        <div class="ih-footer-logo">Intuitive Heart <em>by Dhriti</em></div>
+        <div class="ih-footer-tagline">Tarot Readings · NLP Coaching · Clarity Sessions · Corporate Wellness · Events & Experiences · The Shop</div>
+        <ul class="ih-footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Sessions</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#corporate">Corporate</a></li>
+          <li><a href="#nlp">NLP</a></li>
+          <li><a href="#pricing">Energy Exchange</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Connect</a></li>
+        </ul>
+        <div class="ih-footer-copy">© 2026 Intuitive Heart by Dhriti · Juhu, Mumbai · All rights reserved</div>
+      </div>
+    </footer>
+
+    <button id="ih-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+    <script type="module" set:load>
+      const loader = document.getElementById('ih-loader');
+      const ihNav = document.getElementById('ihNav');
+      const ihHam = document.getElementById('ihHamburger');
+      const ihMob = document.getElementById('ihMobileNav');
+
+      window.addEventListener('load', () => {
+        setTimeout(() => loader.classList.add('hidden'), 1200);
+      });
+
+      window.addEventListener('scroll', () => {
+        ihNav.classList.toggle('scrolled', window.scrollY > 40);
+        document.getElementById('ih-back-top').classList.toggle('visible', window.scrollY > 500);
+      });
+
+      ihHam?.addEventListener('click', () => {
+        ihHam.classList.toggle('open');
+        ihMob.classList.toggle('open');
+      });
+
+      window.ihCloseMobile = () => {
+        ihHam?.classList.remove('open');
+        ihMob?.classList.remove('open');
+      };
+
+      const ihObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.ih-fade').forEach((el) => ihObserver.observe(el));
+
+      window.ihToggleAcc = (button) => {
+        const item = button.closest('.ih-acc-item');
+        if (!item) return;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.ih-acc-item').forEach((entry) => entry.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      };
+
+      window.ihSendWA = () => {
+        const name = document.getElementById('ihName')?.value.trim() || '—';
+        const phone = document.getElementById('ihPhone')?.value.trim() || '—';
+        const session = document.getElementById('ihSession')?.value || '—';
+        const format = document.getElementById('ihFormat')?.value || '—';
+        const msg = document.getElementById('ihMsg')?.value.trim() || '—';
+        const text = `Hi Dhriti! I'd like to connect.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AInterested in: ${encodeURIComponent(session)}%0AFormat: ${encodeURIComponent(format)}%0AMessage: ${encodeURIComponent(msg)}`;
+        window.open(`https://wa.me/919833595968?text=${text}`, '_blank');
+      };
+    </script>
+  </body>
+</html>

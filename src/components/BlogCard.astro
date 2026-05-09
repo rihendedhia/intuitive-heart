@@ -1,0 +1,30 @@
+---
+interface Props {
+  post: {
+    slug: string;
+    frontmatter: {
+      title: string;
+      description: string;
+      category: string;
+      heroEmoji: string;
+    };
+  };
+}
+const { post } = Astro.props;
+const thumbClass = post.frontmatter.category === 'Tarot'
+  ? 'ih-blog-thumb-l'
+  : post.frontmatter.category === 'NLP'
+    ? 'ih-blog-thumb-g'
+    : post.frontmatter.category === 'Corporate Wellness'
+      ? 'ih-blog-thumb-t'
+      : 'ih-blog-thumb-l';
+---
+<a href={`/blog/${post.slug}`} class="ih-blog-card">
+  <div class={`ih-blog-thumb ${thumbClass}`}>{post.frontmatter.heroEmoji}</div>
+  <div class="ih-blog-body">
+    <div class="ih-blog-cat">{post.frontmatter.category}</div>
+    <div class="ih-blog-title">{post.frontmatter.title}</div>
+    <p class="ih-blog-snip">{post.frontmatter.description}</p>
+    <span class="ih-blog-read">Read more →</span>
+  </div>
+</a>

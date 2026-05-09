@@ -1,0 +1,639 @@
+---
+import Layout from '../components/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const posts = Object.entries(import.meta.glob('../content/blog/*.md', { eager: true }))
+  .map(([path, module]) => {
+    const slug = path.split('/').pop().replace(/\.md$/, '');
+    return {
+      slug,
+      ...module,
+    };
+  });
+
+const featuredPosts = posts
+  .sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime())
+  .slice(0, 3);
+---
+
+<Layout title="Home">
+  <section class="ih-hero">
+    <div class="ih-hero-bg">
+      <span class="ih-hero-float">🃏</span>
+      <span class="ih-hero-float">🧠</span>
+      <span class="ih-hero-float">✦</span>
+      <span class="ih-hero-float">🌿</span>
+      <span class="ih-hero-float">☽</span>
+      <span class="ih-hero-float">🕯️</span>
+      <span class="ih-hero-float">◈</span>
+    </div>
+    <div class="ih-hero-content">
+      <div class="ih-eyebrow">✦ Mumbai · In-person &amp; Virtual</div>
+      <h1 class="ih-hero-title">Where intuition<br />meets <em>transformation</em></h1>
+      <p class="ih-hero-sub">Tarot readings, NLP coaching, and clarity sessions that help you move from stuck to certain — gently, precisely, and on your own terms.</p>
+      <div class="ih-hero-tags">
+        <span class="ih-tag ih-tag-l">🃏 Tarot Readings</span>
+        <span class="ih-tag ih-tag-g">🧠 NLP Coaching</span>
+        <span class="ih-tag ih-tag-t">✦ Clarity Coaching</span>
+        <span class="ih-tag ih-tag-r">🌿 Corporate Wellness</span>
+        <span class="ih-tag ih-tag-l">🎉 Private Events</span>
+        <span class="ih-tag ih-tag-g">🛍️ Intentional Shop</span>
+      </div>
+      <div class="ih-hero-btns">
+        <a href="#contact" class="ih-btn ih-btn-dark">Start a conversation ↗</a>
+        <a href="#services" class="ih-btn ih-btn-outline">Explore sessions</a>
+      </div>
+    </div>
+    <div class="ih-scroll-hint">
+      <div class="ih-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <section class="ih-section ih-about" id="about">
+    <div class="ih-container">
+      <div class="ih-about-grid">
+        <div class="ih-fade">
+          <div class="ih-portrait-box">
+            <div class="ih-portrait-avatar">✦</div>
+            <div class="ih-portrait-name">Dhriti</div>
+            <div class="ih-portrait-role">Clarity Coach · Tarot Reader · NLP Practitioner</div>
+            <div class="ih-portrait-chips">
+              <span class="ih-chip">Certified NLP Practitioner</span>
+              <span class="ih-chip">Clarity Coach</span>
+              <span class="ih-chip">Corporate Wellness</span>
+              <span class="ih-chip">Juhu, Mumbai</span>
+            </div>
+          </div>
+        </div>
+        <div class="ih-fade ih-fade-delay-1">
+          <p class="ih-label">About Dhriti</p>
+          <h2 class="ih-title">Where knowing<br />meets <em>transformation</em></h2>
+          <p class="ih-body" style="margin-bottom:1rem;">I'm Dhriti — a Clarity Coach, intuitive Tarot Reader, and certified NLP Practitioner based in Juhu, Mumbai. My work sits at the intersection of inner knowing and practical, lasting change.</p>
+          <p class="ih-body" style="margin-bottom:1rem;">I work with individuals navigating crossroads — career pivots, relationship patterns, blocks around self-worth, grief, and purpose. And I partner with organisations that want to bring genuine wellbeing into the workplace, not just a tick-box exercise.</p>
+          <p class="ih-body" style="margin-bottom:2rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--ink); line-height:1.8;">"My role is not to give you answers — it's to help you hear the ones already within you."</p>
+          <div class="ih-about-pills">
+            <span class="ih-pill">✓ Certified NLP Practitioner</span>
+            <span class="ih-pill">✓ Clarity Coach</span>
+            <span class="ih-pill">✓ Intuitive Tarot Reader</span>
+            <span class="ih-pill">✓ Corporate Wellness Facilitator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-services" id="services">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label">One-on-one Sessions</p>
+        <h2 class="ih-title">What I offer</h2>
+        <p class="ih-body" style="max-width:560px; margin-bottom:0;">Each session is tailored to you — where you are, what you're carrying, and where you want to go.</p>
+      </div>
+      <div class="ih-services-grid ih-fade ih-fade-delay-1">
+        <div class="ih-service-card">
+          <span class="ih-service-icon">🃏</span>
+          <div class="ih-service-type">Tarot</div>
+          <h3 class="ih-service-name">Intuitive Tarot Reading</h3>
+          <p class="ih-service-desc">A private reading that uses the cards as a mirror — bringing clarity to what you're navigating and the energy around it. Not predictions. Perspective.</p>
+        </div>
+        <div class="ih-service-card">
+          <span class="ih-service-icon">🧠</span>
+          <div class="ih-service-type" style="color:var(--gold);">NLP Coaching</div>
+          <h3 class="ih-service-name">NLP Breakthrough Session</h3>
+          <p class="ih-service-desc">Identify and dissolve the patterns, beliefs, and blocks that keep you stuck — working directly at the level of the unconscious mind where change actually happens.</p>
+        </div>
+        <div class="ih-service-card">
+          <span class="ih-service-icon">✦</span>
+          <div class="ih-service-type" style="color:var(--teal);">Coaching</div>
+          <h3 class="ih-service-name">Clarity Coaching</h3>
+          <p class="ih-service-desc">Structured guidance to get clear on direction, decisions, and purpose. Intuition and practical frameworks working together for forward movement.</p>
+        </div>
+        <div class="ih-service-card" style="grid-column: span 3;">
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <span style="font-size:1.4rem;">💬</span>
+            <div>
+              <div class="ih-service-type">Not sure where to start?</div>
+              <p class="ih-service-desc" style="margin:0;">That's completely okay. Drop me a message and we'll figure out what's right for you — no pressure.</p>
+            </div>
+            <a href="#contact" class="ih-btn ih-btn-outline" style="margin-left:auto;font-size:0.8rem;padding:0.6rem 1.4rem;white-space:nowrap;">Let's talk →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-events" id="events">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label rose">Events &amp; Experiences</p>
+        <h2 class="ih-title">Tarot for every<br /><em>occasion</em></h2>
+        <p class="ih-body" style="max-width:580px;">Bring the magic of intuitive readings to your gatherings. Whether intimate or grand, I create experiences that feel personal, memorable, and meaningful for every guest.</p>
+      </div>
+      <div class="ih-events-grid ih-fade ih-fade-delay-1">
+        <div class="ih-event-card">
+          <span class="ih-event-icon">🎂</span>
+          <div class="ih-event-name">Birthday Celebrations</div>
+          <p class="ih-event-desc">A private reading corner at your birthday — personalised readings for you and your guests as a unique, unforgettable gift.</p>
+          <span class="ih-event-tag">Most popular ✦</span>
+        </div>
+        <div class="ih-event-card">
+          <span class="ih-event-icon">🍽️</span>
+          <div class="ih-event-name">Private Dinners</div>
+          <p class="ih-event-desc">Intimate dinner parties elevated with Tarot — individual readings that make every guest feel seen and spark meaningful conversation.</p>
+          <span class="ih-event-tag">Intimate · 4–20 guests</span>
+        </div>
+        <div class="ih-event-card">
+          <span class="ih-event-icon">☕</span>
+          <div class="ih-event-name">Tea Parties &amp; Brunches</div>
+          <p class="ih-event-desc">A beautiful addition to afternoon teas, wellness brunches, or ladies' gatherings — readings woven into the experience naturally.</p>
+          <span class="ih-event-tag">Daytime sessions</span>
+        </div>
+        <div class="ih-event-card">
+          <span class="ih-event-icon">💍</span>
+          <div class="ih-event-name">Weddings &amp; Pre-wedding</div>
+          <p class="ih-event-desc">Tarot booths for mehndi nights, bride tribe gatherings, engagement parties, and wedding receptions. A truly unique touch.</p>
+          <span class="ih-event-tag">Weddings · Mehndi · Sangeet</span>
+        </div>
+        <div class="ih-event-card">
+          <span class="ih-event-icon">🥂</span>
+          <div class="ih-event-name">Get-togethers &amp; House Parties</div>
+          <p class="ih-event-desc">Elevate any gathering — house parties, reunion dinners, kitty parties, girls' nights — with readings guests will talk about for weeks.</p>
+          <span class="ih-event-tag">Any occasion</span>
+        </div>
+        <div class="ih-event-card">
+          <span class="ih-event-icon">🌿</span>
+          <div class="ih-event-name">Wellness &amp; Retreat Events</div>
+          <p class="ih-event-desc">Yoga retreats, sound bath events, wellness circles — Tarot as a tool for deeper reflection and collective intention-setting.</p>
+          <span class="ih-event-tag">Wellness spaces</span>
+        </div>
+        <div class="ih-event-card">
+          <span class="ih-event-icon">🚀</span>
+          <div class="ih-event-name">Brand Launches &amp; Pop-ups</div>
+          <p class="ih-event-desc">Make your launch unforgettable. Brand activations, product launches, influencer events — Tarot as an experiential marketing moment.</p>
+          <span class="ih-event-tag">Brand · Influencer</span>
+        </div>
+        <div class="ih-event-card" style="border-style:dashed;border-color:rgba(196,114,142,0.3);background:rgba(196,114,142,0.03);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0.8rem;">
+          <span style="font-size:2rem;">✨</span>
+          <div class="ih-event-name" style="font-size:1rem;">Something bespoke?</div>
+          <p class="ih-event-desc">Every event is different. Tell me your vision and I'll curate something just for it.</p>
+          <a href="#contact" class="ih-btn ih-btn-outline" style="font-size:0.75rem;padding:0.5rem 1.2rem;">Get a quote →</a>
+        </div>
+      </div>
+      <div class="ih-events-note ih-fade">
+        <span class="ih-events-note-icon">📍</span>
+        <div class="ih-events-note-text">
+          <strong>Based in Juhu, Mumbai</strong> — available across Mumbai and for destination events. Event bookings are customised based on duration, guest count, and location. <a href="#contact" style="color:var(--lavender);font-weight:500;">Reach out for a custom quote ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-corporate" id="corporate">
+    <div class="ih-container ih-corporate-inner">
+      <div class="ih-fade">
+        <p class="ih-label gold white">Corporate Wellness</p>
+        <h2 class="ih-title white">Bringing <em>inner work</em><br />into the workplace</h2>
+      </div>
+      <div class="ih-corporate-grid">
+        <div class="ih-fade">
+          <p class="ih-body white" style="margin-bottom:1rem;">Real wellbeing at work isn't a yoga mat in a breakout room. It's helping your people understand themselves — their patterns, their blocks, their communication — so they show up more present, more connected, and more effective.</p>
+          <p class="ih-corp-quote">With a background in HR and organisational behaviour, I bring a grounded, practical approach to corporate wellness — blending NLP, Tarot, and coaching into experiences your team will actually remember.</p>
+          <div style="margin-top:2rem;">
+            <a href="#contact" class="ih-btn ih-btn-gold">Enquire for your organisation ↗</a>
+          </div>
+        </div>
+        <div class="ih-corp-cards ih-fade ih-fade-delay-1">
+          <div class="ih-corp-card">
+            <div class="ih-corp-icon">🏢</div>
+            <div>
+              <div class="ih-corp-title">Team Offsite Experiences</div>
+              <div class="ih-corp-desc">Tarot corners, intuitive workshops, and NLP-based team sessions for corporate retreats and offsites. Memorable and genuinely useful.</div>
+            </div>
+          </div>
+          <div class="ih-corp-card">
+            <div class="ih-corp-icon">🧠</div>
+            <div>
+              <div class="ih-corp-title">NLP for Leadership & Teams</div>
+              <div class="ih-corp-desc">Communication styles, body language, emotional intelligence, limiting beliefs, and pattern-breaking — applied to the workplace context.</div>
+            </div>
+          </div>
+          <div class="ih-corp-card">
+            <div class="ih-corp-icon">🌿</div>
+            <div>
+              <div class="ih-corp-title">Employee Wellness Activations</div>
+              <div class="ih-corp-desc">Half-day or full-day events — private Tarot readings, group NLP sessions, and wellness experiences that employees actually look forward to.</div>
+            </div>
+          </div>
+          <div class="ih-corp-card">
+            <div class="ih-corp-icon">🎯</div>
+            <div>
+              <div class="ih-corp-title">1:1 Employee Clarity Sessions</div>
+              <div class="ih-corp-desc">Private NLP and coaching sessions offered to individual employees navigating burnout, transitions, self-doubt, or workplace relationship challenges. Offered as a structured benefit — employees book directly and sessions are held in complete confidence. Especially valuable during appraisal seasons, leadership transitions, or high-pressure phases.</div>
+            </div>
+          </div>
+          <div class="ih-corp-card">
+            <div class="ih-corp-icon">💼</div>
+            <div>
+              <div class="ih-corp-title">Executive Coaching</div>
+              <div class="ih-corp-desc">For leaders navigating high-stakes decisions, career transitions, or performance pressure. Private, discreet, and deeply effective.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-approach" id="approach">
+    <div class="ih-container">
+      <div class="ih-approach-grid">
+        <div class="ih-fade">
+          <p class="ih-label">How I work</p>
+          <h2 class="ih-title">Calm. Personal.<br /><em>Discreet.</em></h2>
+          <p class="ih-body" style="margin-bottom:1.2rem;">Every session begins with presence. No rush, no script — just a quiet container for what you're carrying, and the tools to move through it.</p>
+          <p class="ih-body" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--ink);line-height:1.8;">Everything shared in a session is held in complete confidence. Always.</p>
+        </div>
+        <div class="ih-steps ih-fade ih-fade-delay-1">
+          <div class="ih-step">
+            <div class="ih-step-num">01</div>
+            <div>
+              <div class="ih-step-title">Hold space</div>
+              <div class="ih-step-desc">No rush, no agenda. A quiet container for what you're carrying.</div>
+            </div>
+          </div>
+          <div class="ih-step">
+            <div class="ih-step-num">02</div>
+            <div>
+              <div class="ih-step-title">Read the energy</div>
+              <div class="ih-step-desc">Tarot as an intuitive language — reflecting what's already in motion, illuminating blind spots with precision.</div>
+            </div>
+          </div>
+          <div class="ih-step">
+            <div class="ih-step-num">03</div>
+            <div>
+              <div class="ih-step-title">Rewire the pattern</div>
+              <div class="ih-step-desc">NLP tools shift beliefs at the subconscious level — where they actually live and drive behaviour.</div>
+            </div>
+          </div>
+          <div class="ih-step">
+            <div class="ih-step-num">04</div>
+            <div>
+              <div class="ih-step-title">Move with intention</div>
+              <div class="ih-step-desc">You leave with clarity, not dependency. The goal is always your own empowered navigation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-nlp" id="nlp">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label">Understanding NLP</p>
+        <h2 class="ih-title">What is <em>Neuro-Linguistic<br />Programming?</em></h2>
+        <p class="ih-body" style="max-width:640px;margin-bottom:2rem;">NLP explores the connection between how you think, how you use language, and the patterns of behaviour shaping your life. It works at the unconscious level — where beliefs, fears, and habits actually live — to create deep, lasting change.</p>
+      </div>
+      <div class="ih-nlp-pillars ih-fade ih-fade-delay-1">
+        <div class="ih-pillar">
+          <div class="ih-pillar-letter">N</div>
+          <div class="ih-pillar-word">Neuro</div>
+          <div class="ih-pillar-one">Mind</div>
+          <p class="ih-pillar-desc">How your nervous system processes experience — thoughts, feelings, sensory data — and shapes how you see the world.</p>
+        </div>
+        <div class="ih-pillar">
+          <div class="ih-pillar-letter">L</div>
+          <div class="ih-pillar-word">Linguistic</div>
+          <div class="ih-pillar-one">Language</div>
+          <p class="ih-pillar-desc">The words you use — internally and externally — determine your emotional state, your decisions, and how others experience you.</p>
+        </div>
+        <div class="ih-pillar">
+          <div class="ih-pillar-letter">P</div>
+          <div class="ih-pillar-word">Programming</div>
+          <div class="ih-pillar-one">Patterns</div>
+          <p class="ih-pillar-desc">The unconscious patterns running beneath your awareness that drive your reactions, habits, and results — whether you like them or not.</p>
+        </div>
+      </div>
+      <div class="ih-nlp-grid ih-fade">
+        <div>
+          <p class="ih-label" style="margin-bottom:0.5rem;">Uses &amp; benefits</p>
+          <p class="ih-body" style="margin-bottom:1rem;font-size:0.82rem;">Tap each to explore ↓</p>
+          <div class="ih-acc">
+            <div class="ih-acc-item">
+              <button class="ih-acc-trigger" onclick="ihToggleAcc(this)">
+                <span class="ih-acc-icon-emoji">🔄</span>
+                <span class="ih-acc-q">Breaking limiting beliefs</span>
+                <span class="ih-acc-toggle">+</span>
+              </button>
+              <div class="ih-acc-body">Identify and dissolve the unconscious beliefs keeping you stuck — about yourself, others, or what's possible. These aren't fixed truths. They're just old stories that haven't been updated yet.</div>
+            </div>
+            <div class="ih-acc-item">
+              <button class="ih-acc-trigger" onclick="ihToggleAcc(this)">
+                <span class="ih-acc-icon-emoji">🤝</span>
+                <span class="ih-acc-q">Body language &amp; communication</span>
+                <span class="ih-acc-toggle">+</span>
+              </button>
+              <div class="ih-acc-body">NLP teaches you to read and use body language with precision — posture, eye movements, micro-expressions, tonality, and gesture. Improve how you communicate and how you read others, reducing misunderstandings and building real connection.
+                <div class="ih-acc-examples">
+                  <div class="ih-acc-eg"><span class="ih-acc-eg-icon">👁️</span><div><strong>Eye accessing cues</strong> — where your eyes move when you think reveals whether you're visualising, hearing, or feeling. This helps me understand how you process information.</div></div>
+                  <div class="ih-acc-eg"><span class="ih-acc-eg-icon">🪑</span><div><strong>Posture & lean</strong> — open vs. closed posture, forward lean, crossed arms — often speak louder than the words being said.</div></div>
+                  <div class="ih-acc-eg"><span class="ih-acc-eg-icon">🫁</span><div><strong>Breathing patterns</strong> — shallow, high breathing signals anxiety; slow, deep breathing signals calm. Matching breath helps build unconscious rapport instantly.</div></div>
+                  <div class="ih-acc-eg"><span class="ih-acc-eg-icon">🎙️</span><div><strong>Tonality & pace</strong> — the same words said slowly vs. quickly, softly vs. firmly, create completely different emotional experiences in the listener.</div></div>
+                  <div class="ih-acc-eg"><span class="ih-acc-eg-icon">🤲</span><div><strong>Gesture & touch</strong> — where people gesture when they speak often reveals what they're really feeling about a topic — even when the words say something else.</div></div>
+                  <div class="ih-acc-eg"><span class="ih-acc-eg-icon">😶</span><div><strong>Micro-expressions</strong> — fleeting facial expressions (under 0.5 seconds) that reveal true emotion before someone can mask it. Learning to notice these builds profound empathy and read-the-room ability.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="ih-acc-item">
+              <button class="ih-acc-trigger" onclick="ihToggleAcc(this)">
+                <span class="ih-acc-icon-emoji">😰</span>
+                <span class="ih-acc-q">Managing anxiety &amp; fear</span>
+                <span class="ih-acc-toggle">+</span>
+              </button>
+              <div class="ih-acc-body">Neutralise fear and anxiety at the root — not just managing symptoms, but changing how your mind codes the experience that created the fear in the first place.</div>
+            </div>
+            <div class="ih-acc-item">
+              <button class="ih-acc-trigger" onclick="ihToggleAcc(this)">
+                <span class="ih-acc-icon-emoji">🎯</span>
+                <span class="ih-acc-q">Goal clarity &amp; motivation</span>
+                <span class="ih-acc-toggle">+</span>
+              </button>
+              <div class="ih-acc-body">Get genuinely clear on what you want — and why you keep not going for it. NLP makes your goals emotionally real, not just logical lists sitting in a notes app forever.</div>
+            </div>
+            <div class="ih-acc-item">
+              <button class="ih-acc-trigger" onclick="ihToggleAcc(this)">
+                <span class="ih-acc-icon-emoji">💔</span>
+                <span class="ih-acc-q">Relationship patterns</span>
+                <span class="ih-acc-toggle">+</span>
+              </button>
+              <div class="ih-acc-body">Understand and shift the unconscious patterns attracting the same dynamics again and again — in love, friendship, and work. The pattern isn't who you are. It's what you learned to do.</div>
+            </div>
+            <div class="ih-acc-item">
+              <button class="ih-acc-trigger" onclick="ihToggleAcc(this)">
+                <span class="ih-acc-icon-emoji">🌱</span>
+                <span class="ih-acc-q">Self-worth &amp; inner confidence</span>
+                <span class="ih-acc-toggle">+</span>
+              </button>
+              <div class="ih-acc-body">Rebuild a relationship with yourself grounded in genuine self-regard — not performance or external validation, but actual inner knowing that you are enough, right now.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="ih-nlp-note">
+            In my sessions, NLP is not a technique imposed on you — it's a conversation with your own mind. We work together to find the structure of what's keeping you stuck, and then we change it. Gently, precisely, and with your full agency.
+            <cite>— Dhriti</cite>
+          </div>
+          <div style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:var(--cream);border-radius:12px;border:1px solid var(--border);">
+            <p class="ih-label teal" style="margin-bottom:0.6rem;">Body language in sessions</p>
+            <p class="ih-body" style="font-size:0.84rem;">I use NLP-based body language reading to understand what's really going on beneath what you say — your posture, eye patterns, breathing, and micro-expressions often communicate more than words. This helps me meet you exactly where you are.</p>
+          </div>
+          <div style="margin-top:1rem;">
+            <a href="#contact" class="ih-btn ih-btn-dark" style="font-size:0.82rem;padding:0.75rem 1.6rem;">Ask me about NLP ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-pricing" id="pricing">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label">Energy Exchange</p>
+        <h2 class="ih-title">Invest in your <em>clarity</em></h2>
+        <p class="ih-body" style="max-width:500px;">A session is an exchange of energy. Payment confirms your slot and ensures both of us show up fully present.</p>
+      </div>
+      <div class="ih-pricing-grid ih-fade ih-fade-delay-1">
+        <div class="ih-price-card">
+          <div class="ih-price-dur">30 minutes</div>
+          <div class="ih-price-name">Quick Clarity</div>
+          <div class="ih-price-amt">₹1,500 <sub>/ session</sub></div>
+          <div class="ih-price-divider"></div>
+          <ul class="ih-price-list">
+            <li>One focused question or area</li>
+            <li>Tarot reading or NLP check-in</li>
+            <li>In-person (Juhu) or virtual</li>
+            <li>WhatsApp follow-up note</li>
+          </ul>
+          <a href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20reserve%20a%20Quick%20Clarity%20session%20(30%20min%20%E2%80%94%20%E2%82%B91500)" target="_blank" class="ih-btn ih-btn-dark ih-btn-full">Reserve via WhatsApp ↗</a>
+        </div>
+        <div class="ih-price-card featured">
+          <div class="ih-featured-badge">Most chosen</div>
+          <div class="ih-price-dur">60 minutes</div>
+          <div class="ih-price-name">Deep Dive</div>
+          <div class="ih-price-amt">₹2,800 <sub>/ session</sub></div>
+          <div class="ih-price-divider"></div>
+          <ul class="ih-price-list">
+            <li>Full Tarot spread or NLP session</li>
+            <li>Clarity coaching woven in</li>
+            <li>In-person or virtual</li>
+            <li>Summary + action steps via WhatsApp</li>
+          </ul>
+          <a href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20reserve%20a%20Deep%20Dive%20session%20(60%20min%20%E2%80%94%20%E2%82%B92800)" target="_blank" class="ih-btn ih-btn-dark ih-btn-full">Reserve via WhatsApp ↗</a>
+        </div>
+        <div class="ih-price-card">
+          <div class="ih-price-dur">Custom</div>
+          <div class="ih-price-name">Events &amp; Corporate</div>
+          <div class="ih-price-amt" style="font-size:1.4rem;">On request</div>
+          <div class="ih-price-divider"></div>
+          <ul class="ih-price-list">
+            <li>Bespoke event experiences</li>
+            <li>Tarot corners &amp; wellness booths</li>
+            <li>Corporate offsite activations</li>
+            <li>Full-day packages available</li>
+          </ul>
+          <a href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20a%20quote%20for%20an%20event%20or%20corporate%20session." target="_blank" class="ih-btn ih-btn-teal ih-btn-full">Get a quote ↗</a>
+        </div>
+      </div>
+      <p class="ih-pricing-note">Payment via UPI, bank transfer, or online. Your slot is confirmed after payment is received.<br />All sessions held with complete discretion.</p>
+    </div>
+  </section>
+
+  <section class="ih-section ih-shop" id="shop">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label gold">The Shop</p>
+        <h2 class="ih-title">Intentional <em>objects</em><br />for everyday ritual</h2>
+        <p class="ih-body" style="max-width:600px;">Everything here is curated or created to support your inner work — between sessions, on quiet mornings, and in the rituals that hold you together. From intention bath salts and infused candles to affirmation cards, ritual kits, and books written by Dhriti.</p>
+      </div>
+      <div class="ih-shop-grid ih-fade ih-fade-delay-1">
+        <div class="ih-shop-card">
+          <div class="ih-shop-thumb ih-shop-thumb-1">🧴</div>
+          <div class="ih-shop-body">
+            <div class="ih-shop-cat">Bath &amp; Ritual</div>
+            <div class="ih-shop-name">Intention Bath Salts</div>
+            <p class="ih-shop-desc">Handcrafted bath salts infused with intention — for releasing, grounding, and clearing energy after a long day or session.</p>
+            <div class="ih-shop-cta">Coming soon ↗</div>
+          </div>
+        </div>
+        <div class="ih-shop-card">
+          <div class="ih-shop-thumb ih-shop-thumb-2">🕯️</div>
+          <div class="ih-shop-body">
+            <div class="ih-shop-cat">Candles</div>
+            <div class="ih-shop-name">Infused Ritual Candles</div>
+            <p class="ih-shop-desc">Hand-poured candles infused with herbs, oils, and intention — each one crafted for a specific energy: clarity, love, protection, abundance.</p>
+            <div class="ih-shop-cta">Coming soon ↗</div>
+          </div>
+        </div>
+        <div class="ih-shop-card">
+          <div class="ih-shop-thumb ih-shop-thumb-3">🃏</div>
+          <div class="ih-shop-body">
+            <div class="ih-shop-cat">Tools for Inner Work</div>
+            <div class="ih-shop-name">Affirmation Card Deck</div>
+            <p class="ih-shop-desc">A deck of affirmation cards designed to be used daily — each one a prompt for reflection, a gentle rewire, or simply a moment of presence.</p>
+            <div class="ih-shop-cta">Coming soon ↗</div>
+          </div>
+        </div>
+        <div class="ih-shop-card">
+          <div class="ih-shop-thumb ih-shop-thumb-4">📖</div>
+          <div class="ih-shop-body">
+            <div class="ih-shop-cat">Books Written by Dhriti</div>
+            <div class="ih-shop-name">Her Books</div>
+            <p class="ih-shop-desc">Dhriti writes on inner work, psychological patterns, intuition, and the language of the unconscious — for readers who want depth and honesty, not just comfort. Watch this space for her debut title.</p>
+            <div class="ih-shop-cta">Notify me when live ↗</div>
+          </div>
+        </div>
+        <div class="ih-shop-card" style="border-color:rgba(91,154,160,0.2);">
+          <div class="ih-shop-thumb" style="background:linear-gradient(135deg,rgba(91,154,160,0.1),rgba(155,142,196,0.08));">🌿</div>
+          <div class="ih-shop-body">
+            <div class="ih-shop-cat" style="color:var(--teal);">Ritual Kits</div>
+            <div class="ih-shop-name">Curated Ritual Sets</div>
+            <p class="ih-shop-desc">Thoughtfully bundled sets — bath salts, a candle, and affirmation cards — gifted together as a complete inner-work starter kit or a meaningful present for someone you love.</p>
+            <div class="ih-shop-cta" style="color:var(--teal);">Coming soon ↗</div>
+          </div>
+        </div>
+      </div>
+      <p class="ih-shop-note">The shop is launching soon. <a href="#contact" style="color:var(--gold);font-weight:500;">Join the waitlist ↗</a> to be the first to know.</p>
+    </div>
+  </section>
+
+  <section class="ih-section ih-testi" id="testimonials">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label">Kind Words</p>
+        <h2 class="ih-title">What people<br /><em>carry away</em></h2>
+      </div>
+      <div class="ih-testi-grid ih-fade ih-fade-delay-1">
+        <div class="ih-testi-card">
+          <div class="ih-testi-quote">"</div>
+          <p class="ih-testi-text">The NLP session was unlike anything I expected. I walked in with a fear I'd carried for years and walked out feeling lighter than I have in a long time. Dhriti holds space in a way that feels completely safe.</p>
+          <div class="ih-testi-name">Ananya M.</div>
+          <div class="ih-testi-tag">NLP Session · Virtual</div>
+        </div>
+        <div class="ih-testi-card">
+          <div class="ih-testi-quote">"</div>
+          <p class="ih-testi-text">We booked Dhriti for our company's wellness offsite and the feedback was incredible. Guests were lining up for readings. She has this beautiful ability to make something deep feel effortless and accessible.</p>
+          <div class="ih-testi-name">Priya S.</div>
+          <div class="ih-testi-tag">Corporate Wellness · Mumbai</div>
+        </div>
+        <div class="ih-testi-card">
+          <div class="ih-testi-quote">"</div>
+          <p class="ih-testi-text">I was sceptical about Tarot, honestly. But the way Dhriti uses it — it's not about predictions, it's about perspective. I got more clarity in 60 minutes than months of overthinking.</p>
+          <div class="ih-testi-name">Rohan J.</div>
+          <div class="ih-testi-tag">Tarot Reading · Mumbai</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-blog" id="blog">
+    <div class="ih-container">
+      <div class="ih-blog-header ih-fade">
+        <div>
+          <p class="ih-label">From the journal</p>
+          <h2 class="ih-title">Thoughts on <em>inner work</em></h2>
+        </div>
+        <a href="/blog" class="ih-btn ih-btn-outline" style="font-size:0.8rem;padding:0.6rem 1.4rem;">All posts →</a>
+      </div>
+      <div class="ih-blog-grid ih-fade ih-fade-delay-1">
+        {featuredPosts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="ih-section ih-contact" id="contact">
+    <div class="ih-container">
+      <div class="ih-fade">
+        <p class="ih-label">Connect</p>
+        <h2 class="ih-title">Let's start a<br /><em>conversation</em></h2>
+      </div>
+      <div class="ih-contact-grid">
+        <div class="ih-fade">
+          <p class="ih-body" style="margin-bottom:2rem;">Whether you're ready to reserve a session, have questions, or simply want to understand what's right for you — reach out. No pressure, no script.</p>
+          <div class="ih-contact-info">
+            <div>
+              <div class="ih-contact-block-label">Location</div>
+              <div class="ih-contact-block-val">Juhu, Mumbai</div>
+              <div class="ih-contact-block-sub">In-person &amp; virtual sessions available</div>
+            </div>
+            <div>
+              <div class="ih-contact-block-label">WhatsApp</div>
+              <div class="ih-contact-block-val">+91 98335 95968</div>
+              <div class="ih-contact-block-sub">Replies within 2 working days</div>
+            </div>
+            <div>
+              <div class="ih-contact-block-label">Follow along</div>
+              <div class="ih-contact-socials">
+                <a href="https://instagram.com/intuitivedhritibydhriti" target="_blank" class="ih-social-btn">Instagram</a>
+                <a href="#" class="ih-social-btn">LinkedIn</a>
+                <a href="#" class="ih-social-btn">YouTube</a>
+              </div>
+            </div>
+            <div style="padding:1.2rem 1.4rem;background:var(--lavender-pale);border-radius:12px;border:1px solid rgba(155,142,196,0.18);">
+              <div class="ih-contact-block-label" style="margin-bottom:0.4rem;">Event &amp; Corporate enquiries</div>
+              <p class="ih-body" style="font-size:0.82rem;">Select "Event or Corporate" below and share your date, guest count, and vision — I'll come back to you with a custom proposal.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ih-fade ih-fade-delay-1">
+          <div class="ih-form">
+            <div class="ih-form-row">
+              <div class="ih-form-group">
+                <label class="ih-form-label">Your name</label>
+                <input type="text" class="ih-input" placeholder="Full name" id="ihName" />
+              </div>
+              <div class="ih-form-group">
+                <label class="ih-form-label">WhatsApp number</label>
+                <input type="tel" class="ih-input" placeholder="+91 XXXXX XXXXX" id="ihPhone" />
+              </div>
+            </div>
+            <div class="ih-form-group">
+              <label class="ih-form-label">I'm interested in</label>
+              <select class="ih-select" id="ihSession">
+                <option value="">Select a session or enquiry type...</option>
+                <option>Intuitive Tarot Reading</option>
+                <option>NLP Breakthrough Session</option>
+                <option>Clarity Coaching</option>
+                <option>Event — Birthday / Get-together</option>
+                <option>Event — Private Dinner / Tea Party</option>
+                <option>Event — Wedding / Pre-wedding / Mehndi</option>
+                <option>Event — Brand Launch / Pop-up</option>
+                <option>Corporate Wellness Programme</option>
+                <option>Corporate — 1:1 Employee Sessions</option>
+                <option>Shop — Bath Salts / Candles / Cards Waitlist</option>
+                <option>Shop — Books by Dhriti — Notify Me</option>
+                <option>Not sure — help me figure it out</option>
+              </select>
+            </div>
+            <div class="ih-form-group">
+              <label class="ih-form-label">Format <span>(for 1:1 sessions)</span></label>
+              <select class="ih-select" id="ihFormat">
+                <option value="">In-person or virtual?</option>
+                <option>In-person · Juhu, Mumbai</option>
+                <option>Virtual (Zoom / Google Meet)</option>
+                <option>No preference / N/A</option>
+              </select>
+            </div>
+            <div class="ih-form-group">
+              <label class="ih-form-label">What's on your mind? <span>(optional)</span></label>
+              <textarea class="ih-textarea" id="ihMsg" placeholder="Share as much or as little as you'd like..."></textarea>
+            </div>
+            <button class="ih-btn ih-btn-dark ih-btn-full" onclick="ihSendWA()" style="padding:1rem;font-size:0.9rem;">Send via WhatsApp ↗</button>
+            <p style="font-size:0.72rem;color:var(--stone);text-align:center;font-style:italic;">You'll hear back within 2 working days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
