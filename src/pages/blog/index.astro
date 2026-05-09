@@ -1,0 +1,33 @@
+---
+import Layout from '../../components/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = Object.entries(import.meta.glob('../../content/blog/*.md', { eager: true }))
+  .map(([path, module]) => {
+    const slug = path.split('/').pop().replace(/\.md$/, '');
+    return {
+      slug,
+      ...module,
+    };
+  });
+
+const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+---
+<Layout title="Blog">
+  <section class="ih-section ih-blog">
+    <div class="ih-container">
+      <div class="ih-blog-header ih-fade">
+        <div>
+          <p class="ih-label">Journal</p>
+          <h2 class="ih-title">Stories, rituals, and clarity notes</h2>
+          <p class="ih-body" style="max-width:600px;">Each post is written for people who want simple guidance, practical reflection, and invitations to sit with themselves more gently.</p>
+        </div>
+      </div>
+      <div class="ih-blog-grid ih-fade ih-fade-delay-1">
+        {sortedPosts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

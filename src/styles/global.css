@@ -1,0 +1,1966 @@
+:root {
+  --ink: #1a1625;
+  --ink-soft: #4a4558;
+  --stone: #8a8499;
+  --stone-light: #b8b2cc;
+  --lavender: #9b8ec4;
+  --lavender-deep: #6b5ea8;
+  --lavender-light: #f0ecfa;
+  --lavender-pale: #faf8fe;
+  --gold: #c9a84c;
+  --gold-light: #fdf6e3;
+  --teal: #5b9aa0;
+  --teal-light: #edf5f6;
+  --rose: #c4728e;
+  --white: #ffffff;
+  --cream: #fdfcf8;
+  --border: rgba(155, 142, 196, 0.18);
+  --radius: 16px;
+  --shadow: 0 4px 32px rgba(26, 22, 37, 0.08);
+  --shadow-hover: 0 12px 48px rgba(26, 22, 37, 0.14);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+select,
+textarea,
+input {
+  font: inherit;
+}
+
+#ih-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease;
+}
+
+#ih-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ih-loader-inner {
+  text-align: center;
+}
+
+.ih-loader-sigil {
+  font-size: 2.8rem;
+  display: block;
+  margin-bottom: 1.4rem;
+  animation: ih-pulse 2s ease-in-out infinite;
+}
+
+.ih-loader-brand {
+  font-family: "Cormorant Garamond", serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+}
+
+.ih-loader-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.ih-loader-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  animation: ih-bounce 1.4s ease-in-out infinite;
+}
+
+.ih-loader-dot:nth-child(1) {
+  background: var(--lavender);
+}
+
+.ih-loader-dot:nth-child(2) {
+  background: var(--gold);
+  animation-delay: 0.2s;
+}
+
+.ih-loader-dot:nth-child(3) {
+  background: var(--teal);
+  animation-delay: 0.4s;
+}
+
+@keyframes ih-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes ih-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+.ih-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(253, 252, 248, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+.ih-nav.scrolled {
+  box-shadow: 0 2px 24px rgba(26, 22, 37, 0.06);
+}
+
+.ih-nav-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.ih-nav-logo em {
+  font-style: normal;
+  color: var(--lavender);
+}
+
+.ih-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.ih-nav-links a {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+
+.ih-nav-links a:hover {
+  color: var(--lavender);
+}
+
+.ih-nav-links .ih-nav-cta {
+  padding: 0.55rem 1.4rem;
+  background: var(--ink);
+  color: var(--white) !important;
+  border-radius: 100px;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
+
+.ih-nav-links .ih-nav-cta:hover {
+  background: var(--lavender) !important;
+}
+
+.ih-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.ih-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.ih-hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(4.5px, 4.5px);
+}
+
+.ih-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.ih-hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(4.5px, -4.5px);
+}
+
+.ih-mobile-nav {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  z-index: 199;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ih-mobile-nav.open {
+  display: flex;
+}
+
+.ih-mobile-nav a {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+  display: block;
+  transition: color 0.2s;
+}
+
+.ih-mobile-nav a:last-child {
+  border: none;
+}
+
+.ih-mobile-nav a:hover {
+  color: var(--lavender);
+}
+
+.ih-section {
+  padding: 6rem 2rem;
+}
+
+.ih-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ih-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.ih-label::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--lavender);
+  flex-shrink: 0;
+}
+
+.ih-label.gold {
+  color: var(--gold);
+}
+
+.ih-label.gold::before {
+  background: var(--gold);
+}
+
+.ih-label.teal {
+  color: var(--teal);
+}
+
+.ih-label.teal::before {
+  background: var(--teal);
+}
+
+.ih-label.rose {
+  color: var(--rose);
+}
+
+.ih-label.rose::before {
+  background: var(--rose);
+}
+
+.ih-label.white {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ih-label.white::before {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ih-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.ih-title em {
+  font-style: italic;
+  color: var(--lavender);
+}
+
+.ih-title.white {
+  color: var(--white);
+}
+
+.ih-title.white em {
+  color: var(--gold);
+}
+
+.ih-body {
+  color: var(--ink-soft);
+  font-weight: 300;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.ih-body.white {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ih-btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-align: center;
+}
+
+.ih-btn-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.ih-btn-dark:hover {
+  background: var(--lavender);
+  transform: translateY(-1px);
+}
+
+.ih-btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(26, 22, 37, 0.2);
+}
+
+.ih-btn-outline:hover {
+  border-color: var(--lavender);
+  color: var(--lavender);
+}
+
+.ih-btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.ih-btn-gold:hover {
+  background: #e0bc60;
+  transform: translateY(-1px);
+}
+
+.ih-btn-teal {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.ih-btn-teal:hover {
+  background: #4a8a90;
+  transform: translateY(-1px);
+}
+
+.ih-btn-outline-white {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ih-btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ih-btn-full {
+  width: 100%;
+  display: block;
+}
+
+.ih-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.ih-fade.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.ih-fade-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.ih-fade-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.ih-fade-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.ih-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ih-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(155, 142, 196, 0.13) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 15% 80%,
+      rgba(91, 154, 160, 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 40% 50% at 85% 20%,
+      rgba(201, 168, 76, 0.08) 0%,
+      transparent 60%
+    );
+}
+
+.ih-hero-float {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.6rem;
+  opacity: 0.1;
+  animation: ih-float 9s ease-in-out infinite;
+}
+
+.ih-hero-float:nth-child(1) {
+  top: 12%;
+  left: 6%;
+  animation-delay: 0s;
+}
+
+.ih-hero-float:nth-child(2) {
+  top: 22%;
+  right: 8%;
+  animation-delay: 1.8s;
+}
+
+.ih-hero-float:nth-child(3) {
+  bottom: 28%;
+  left: 4%;
+  animation-delay: 3.2s;
+}
+
+.ih-hero-float:nth-child(4) {
+  bottom: 18%;
+  right: 6%;
+  animation-delay: 5s;
+}
+
+.ih-hero-float:nth-child(5) {
+  top: 55%;
+  left: 12%;
+  animation-delay: 2.1s;
+}
+
+.ih-hero-float:nth-child(6) {
+  top: 38%;
+  right: 3%;
+  animation-delay: 6.5s;
+}
+
+.ih-hero-float:nth-child(7) {
+  top: 75%;
+  right: 18%;
+  animation-delay: 4s;
+}
+
+@keyframes ih-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-14px) rotate(4deg);
+  }
+  66% {
+    transform: translateY(7px) rotate(-3deg);
+  }
+}
+
+.ih-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.ih-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  padding: 0.35rem 1.1rem;
+  border: 1px solid rgba(155, 142, 196, 0.3);
+  border-radius: 100px;
+  background: rgba(155, 142, 196, 0.06);
+  margin-bottom: 1.8rem;
+}
+
+.ih-hero-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3.2rem, 9vw, 6rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.6rem;
+}
+
+.ih-hero-title em {
+  font-style: italic;
+  color: var(--lavender);
+}
+
+.ih-hero-sub {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.75;
+}
+
+.ih-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 2.8rem;
+}
+
+.ih-tag {
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.ih-tag-l {
+  background: rgba(155, 142, 196, 0.1);
+  color: var(--lavender-deep);
+  border: 1px solid rgba(155, 142, 196, 0.22);
+}
+
+.ih-tag-g {
+  background: rgba(201, 168, 76, 0.1);
+  color: #9a7220;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+}
+
+.ih-tag-t {
+  background: rgba(91, 154, 160, 0.1);
+  color: var(--teal);
+  border: 1px solid rgba(91, 154, 160, 0.22);
+}
+
+.ih-tag-r {
+  background: rgba(196, 114, 142, 0.1);
+  color: var(--rose);
+  border: 1px solid rgba(196, 114, 142, 0.22);
+}
+
+.ih-hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ih-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--stone-light);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ih-scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, var(--lavender), transparent);
+  animation: ih-scrollpulse 2.2s ease-in-out infinite;
+}
+
+@keyframes ih-scrollpulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.ih-about {
+  background: var(--white);
+}
+
+.ih-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.ih-portrait-box {
+  background: linear-gradient(
+    145deg,
+    var(--lavender-light),
+    rgba(91, 154, 160, 0.07),
+    rgba(201, 168, 76, 0.07)
+  );
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.ih-portrait-avatar {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--lavender), var(--teal));
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--white);
+}
+
+.ih-portrait-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.ih-portrait-role {
+  font-size: 0.75rem;
+  color: var(--stone);
+  letter-spacing: 0.08em;
+  margin-bottom: 2rem;
+}
+
+.ih-portrait-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.ih-chip {
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+}
+
+.ih-about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.ih-pill {
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  font-size: 0.74rem;
+  background: var(--lavender-light);
+  color: var(--lavender-deep);
+  border: 1px solid rgba(155, 142, 196, 0.2);
+}
+
+.ih-services {
+  background: var(--cream);
+}
+
+.ih-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.ih-service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.6rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.ih-service-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--lavender), var(--teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.ih-service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ih-service-card:hover::after {
+  transform: scaleX(1);
+}
+
+.ih-service-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ih-service-type {
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--lavender);
+  margin-bottom: 0.4rem;
+}
+
+.ih-service-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+  line-height: 1.3;
+}
+
+.ih-service-desc {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.ih-events {
+  background: var(--white);
+}
+
+.ih-events-intro {
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.ih-events-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.ih-event-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.4rem;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.ih-event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(155, 142, 196, 0.04),
+    rgba(201, 168, 76, 0.04)
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.ih-event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.ih-event-card:hover::before {
+  opacity: 1;
+}
+
+.ih-event-icon {
+  font-size: 2.4rem;
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.ih-event-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.ih-event-desc {
+  font-size: 0.78rem;
+  color: var(--stone);
+  line-height: 1.6;
+}
+
+.ih-event-tag {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  font-weight: 500;
+}
+
+.ih-events-note {
+  margin-top: 2.5rem;
+  padding: 1.4rem 1.8rem;
+  background: var(--lavender-pale);
+  border-radius: 12px;
+  border: 1px solid rgba(155, 142, 196, 0.15);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.ih-events-note-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.ih-events-note-text {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.ih-corporate {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.ih-corporate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 60% 70% at 80% 50%,
+      rgba(155, 142, 196, 0.12) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 50% at 10% 30%,
+      rgba(91, 154, 160, 0.08) 0%,
+      transparent 60%
+    );
+}
+
+.ih-corporate-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.ih-corporate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.ih-corp-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ih-corp-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: background 0.2s;
+}
+
+.ih-corp-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.ih-corp-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ih-corp-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+
+.ih-corp-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
+}
+
+.ih-corp-quote {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.8;
+  margin-top: 1.8rem;
+}
+
+.ih-approach {
+  background: var(--cream);
+}
+
+.ih-approach-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.ih-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.ih-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ih-step:last-child {
+  border: none;
+}
+
+.ih-step-num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: rgba(155, 142, 196, 0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 2.8rem;
+}
+
+.ih-step-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.ih-step-desc {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.ih-nlp {
+  background: var(--white);
+}
+
+.ih-nlp-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 2.5rem 0;
+}
+
+.ih-pillar {
+  padding: 2rem 1.6rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-align: center;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
+.ih-pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.ih-pillar-letter {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  opacity: 0.6;
+}
+
+.ih-pillar-word {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+
+.ih-pillar-one {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  background: var(--lavender-light);
+  padding: 0.2rem 0.7rem;
+  border-radius: 100px;
+  margin-bottom: 0.8rem;
+}
+
+.ih-pillar-desc {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.ih-nlp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.ih-acc {
+  display: flex;
+  flex-direction: column;
+}
+
+.ih-acc-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.ih-acc-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  gap: 1rem;
+}
+
+.ih-acc-icon-emoji {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ih-acc-q {
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--ink);
+  flex: 1;
+  text-align: left;
+}
+
+.ih-acc-toggle {
+  font-size: 1.1rem;
+  color: var(--lavender);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+.ih-acc-item.open .ih-acc-toggle {
+  transform: rotate(45deg);
+}
+
+.ih-acc-body {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  font-weight: 300;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.4s ease,
+    padding 0.3s;
+}
+
+.ih-acc-item.open .ih-acc-body {
+  max-height: 600px;
+  padding-bottom: 1.2rem;
+}
+
+.ih-acc-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.ih-acc-eg {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+
+.ih-acc-eg-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ih-acc-eg strong {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.ih-acc-eg div {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.ih-nlp-note {
+  margin-top: 2rem;
+  padding: 1.5rem 1.8rem;
+  background: var(--lavender-pale);
+  border-radius: 12px;
+  border: 1px solid rgba(155, 142, 196, 0.2);
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.ih-nlp-note cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  margin-top: 0.7rem;
+}
+
+.ih-pricing {
+  background: var(--lavender-pale);
+}
+
+.ih-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.ih-price-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.ih-price-card.featured {
+  border-color: var(--lavender);
+  box-shadow:
+    0 0 0 1px var(--lavender),
+    var(--shadow);
+}
+
+.ih-price-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ih-featured-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--lavender);
+  color: var(--white);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.9rem;
+  border-radius: 100px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ih-price-dur {
+  font-size: 0.7rem;
+  color: var(--stone);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.ih-price-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.ih-price-amt {
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.ih-price-amt sub {
+  font-size: 0.68rem;
+  color: var(--stone);
+  font-weight: 400;
+}
+
+.ih-price-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.2rem;
+}
+
+.ih-price-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1.8rem;
+}
+
+.ih-price-list li {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.ih-price-list li::before {
+  content: "✦";
+  color: var(--lavender);
+  font-size: 0.5rem;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.ih-pricing-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--stone);
+  margin-top: 2rem;
+  font-style: italic;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.ih-shop {
+  background: var(--gold-light);
+}
+
+.ih-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.ih-shop-card {
+  background: var(--white);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.ih-shop-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.ih-shop-thumb {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.ih-shop-thumb-1 {
+  background: linear-gradient(
+    135deg,
+    rgba(155, 142, 196, 0.12),
+    rgba(196, 114, 142, 0.08)
+  );
+}
+
+.ih-shop-thumb-2 {
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.12),
+    rgba(255, 220, 100, 0.08)
+  );
+}
+
+.ih-shop-thumb-3 {
+  background: linear-gradient(
+    135deg,
+    rgba(91, 154, 160, 0.1),
+    rgba(155, 142, 196, 0.08)
+  );
+}
+
+.ih-shop-thumb-4 {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 22, 37, 0.06),
+    rgba(155, 142, 196, 0.06)
+  );
+}
+
+.ih-shop-body {
+  padding: 1.2rem 1.4rem;
+}
+
+.ih-shop-cat {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.ih-shop-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.ih-shop-desc {
+  font-size: 0.78rem;
+  color: var(--stone);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.ih-shop-cta {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.ih-shop-note {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.ih-testi {
+  background: var(--white);
+}
+
+.ih-testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.ih-testi-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+}
+
+.ih-testi-quote {
+  font-size: 2.4rem;
+  color: var(--lavender);
+  opacity: 0.25;
+  line-height: 1;
+  margin-bottom: 0.8rem;
+  font-family: Georgia, serif;
+}
+
+.ih-testi-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.ih-testi-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ih-testi-tag {
+  font-size: 0.72rem;
+  color: var(--stone);
+  margin-top: 0.2rem;
+}
+
+.ih-blog {
+  background: var(--lavender-pale);
+}
+
+.ih-blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.ih-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.ih-blog-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
+  display: block;
+  color: inherit;
+}
+
+.ih-blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ih-blog-thumb {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.ih-blog-thumb-l {
+  background: linear-gradient(
+    135deg,
+    rgba(155, 142, 196, 0.14),
+    rgba(155, 142, 196, 0.04)
+  );
+}
+
+.ih-blog-thumb-g {
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.12),
+    rgba(201, 168, 76, 0.03)
+  );
+}
+
+.ih-blog-thumb-t {
+  background: linear-gradient(
+    135deg,
+    rgba(91, 154, 160, 0.12),
+    rgba(91, 154, 160, 0.03)
+  );
+}
+
+.ih-blog-body {
+  padding: 1.4rem;
+}
+
+.ih-blog-cat {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.ih-blog-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+
+.ih-blog-snip {
+  font-size: 0.8rem;
+  color: var(--stone);
+  line-height: 1.6;
+}
+
+.ih-blog-read {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--lavender);
+  font-weight: 500;
+}
+
+.ih-article {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.ih-article-header {
+  margin-bottom: 2rem;
+}
+
+.ih-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--stone);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.ih-article-body {
+  margin-top: 2rem;
+}
+
+.ih-article-body p {
+  margin-bottom: 1.25rem;
+}
+
+.ih-contact {
+  background: var(--white);
+}
+
+.ih-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.ih-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.ih-contact-block-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--stone);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.ih-contact-block-val {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.ih-contact-block-sub {
+  font-size: 0.8rem;
+  color: var(--stone);
+  margin-top: 0.2rem;
+}
+
+.ih-contact-socials {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.ih-social-btn {
+  padding: 0.38rem 1rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  transition: all 0.2s;
+}
+
+.ih-social-btn:hover {
+  border-color: var(--lavender);
+  color: var(--lavender);
+}
+
+.ih-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ih-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.ih-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ih-form-label {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.ih-form-label span {
+  color: var(--stone);
+  font-weight: 300;
+}
+
+.ih-input,
+.ih-select,
+.ih-textarea {
+  padding: 0.78rem 1rem;
+  border: 1px solid rgba(155, 142, 196, 0.22);
+  border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  width: 100%;
+}
+
+.ih-input:focus,
+.ih-select:focus,
+.ih-textarea:focus {
+  border-color: var(--lavender);
+  background: var(--white);
+}
+
+.ih-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ih-footer {
+  background: var(--ink);
+  padding: 3.5rem 2rem;
+}
+
+.ih-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ih-footer-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.ih-footer-logo em {
+  font-style: normal;
+  color: var(--lavender);
+}
+
+.ih-footer-tagline {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2.5rem;
+}
+
+.ih-footer-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 2.5rem;
+}
+
+.ih-footer-links a {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.78rem;
+  transition: color 0.2s;
+}
+
+.ih-footer-links a:hover {
+  color: var(--lavender);
+}
+
+.ih-footer-copy {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+#ih-back-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    background 0.2s;
+}
+
+#ih-back-top.visible {
+  opacity: 1;
+}
+
+#ih-back-top:hover {
+  background: var(--lavender);
+}
+
+@media (max-width: 1024px) {
+  .ih-events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ih-shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .ih-nav-links {
+    display: none;
+  }
+
+  .ih-hamburger {
+    display: flex;
+  }
+
+  .ih-about-grid,
+  .ih-corporate-grid,
+  .ih-approach-grid,
+  .ih-nlp-grid,
+  .ih-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .ih-services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ih-nlp-pillars {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ih-pricing-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ih-testi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ih-blog-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ih-section {
+    padding: 4rem 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ih-services-grid,
+  .ih-pricing-grid,
+  .ih-blog-grid,
+  .ih-events-grid,
+  .ih-shop-grid,
+  .ih-nlp-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .ih-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ih-hero-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ih-hero-title {
+    font-size: 3rem;
+  }
+
+  .ih-price-card.featured {
+    margin-top: 0.5rem;
+  }
+
+  .ih-corporate-grid {
+    grid-template-columns: 1fr;
+  }
+}
