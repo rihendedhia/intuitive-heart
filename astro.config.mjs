@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Replace with her actual domain or github.io address
-  site: 'https://rihendedhia.github.io',
-  base: '/intuitive-heart/',
+  // site: 'https://rihendedhia.github.io',
+  // base: '/intuitive-heart/',
+  site: 'https://www.intuitiveheart.co/',
   trailingSlash: 'always',
 });
