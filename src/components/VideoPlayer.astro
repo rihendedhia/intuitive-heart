@@ -1,0 +1,194 @@
+---
+// src/components/LocalVideo.astro
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  videoSrc: string; // Path to your video asset, e.g., '/videos/meditation.mp4'
+  thumbnail: string; // Path to your preview image, e.g., '/gallery/video-poster.jpg'
+  aspectRatio?: 'horizontal' | 'vertical';
+}
+
+const { title, subtitle, videoSrc, thumbnail, aspectRatio = 'horizontal' } = Astro.props;
+---
+
+<section class="ih-section ih-video-section" aria-labelledby="video-title">
+  <div class="ih-container">
+    <div class="ih-fade">
+      <p class="ih-label">Digital Sanctuary</p>
+      <h2 class="ih-title">
+        A visual introduction to the <em>healing space</em>
+      </h2>
+    </div>
+
+    <div class="ih-video-grid">
+      <div class={`ih-video-container ih-fade ${aspectRatio}`}>
+        <div class="ih-video-viewport" data-src={videoSrc} data-poster={thumbnail}>
+          <div class="ih-video-facade">
+            <img src={thumbnail} alt={title} loading="lazy" class="ih-video-thumb" />
+            <button class="ih-play-button" aria-label="Play native video asset">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ih-video-section {
+    background: var(--cream);
+  }
+
+  .ih-video-section,
+  .ih-video-section * {
+    --space-xs: 0.5rem;
+    --space-s: 0.85rem;
+    --space-m: 1.25rem;
+    --space-l: 2rem;
+    --space-xl: 2.75rem;
+    --radius-m: 1.2rem;
+    --transition-smooth: 0.35s ease;
+    --shadow-md: 0 18px 40px rgba(26, 22, 37, 0.12);
+  }
+
+  .ih-video-grid {
+    margin-top: 3rem;
+  }
+
+  .ih-video-container {
+    margin-inline: auto;
+    width: 100%;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    border: 1px solid rgba(155, 142, 196, 0.18);
+    box-shadow: var(--shadow-md);
+    background: var(--white);
+    transition:
+      border-color var(--transition-smooth),
+      box-shadow var(--transition-smooth);
+  }
+
+  .ih-video-container:hover {
+    border-color: rgba(155, 142, 196, 0.35);
+    box-shadow: 0 20px 50px rgba(26, 22, 37, 0.12);
+  }
+
+  .ih-video-container.horizontal {
+    max-width: 860px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .ih-video-container.vertical {
+    max-width: 420px;
+    aspect-ratio: 9 / 16;
+  }
+
+  .ih-video-viewport {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ih-video-facade {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  .ih-video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition:
+      transform 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity var(--transition-smooth);
+  }
+
+  .ih-video-facade:hover .ih-video-thumb {
+    transform: scale(1.03);
+    opacity: 0.92;
+  }
+
+  .ih-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(155, 142, 196, 0.25);
+    color: var(--ink);
+    border-radius: 50%;
+    width: 74px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      transform var(--transition-smooth),
+      box-shadow var(--transition-smooth),
+      background var(--transition-smooth);
+    box-shadow: 0 12px 40px rgba(26, 22, 37, 0.14);
+  }
+
+  .ih-play-button svg {
+    transform: translateX(2px);
+  }
+
+  .ih-video-facade:hover .ih-play-button {
+    background: var(--gold);
+    color: var(--white);
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 18px 45px rgba(201, 168, 76, 0.22);
+  }
+
+  :global(.ih-video-viewport video) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    outline: none;
+  }
+
+  @media (max-width: 900px) {
+    .ih-video-container.horizontal,
+    .ih-video-container.vertical {
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
+
+<script type="module">
+  // Execution loop injects the hardware-accelerated video interface on intent
+  const viewports = document.querySelectorAll('.ih-video-viewport');
+
+  viewports.forEach((viewport) => {
+    const facade = viewport.querySelector('.ih-video-facade');
+
+    facade?.addEventListener('click', function () {
+      const videoSrc = viewport.getAttribute('data-src');
+      const poster = viewport.getAttribute('data-poster');
+
+      const video = document.createElement('video');
+      video.setAttribute('src', videoSrc);
+      video.setAttribute('poster', poster);
+      video.setAttribute('autoplay', '1');
+      video.setAttribute('controls', '1');
+      video.setAttribute('playsinline', '1'); // Crucial for seamless iOS viewing
+      video.setAttribute('preload', 'auto');
+
+      viewport.innerHTML = '';
+      viewport.appendChild(video);
+    });
+  });
+</script>

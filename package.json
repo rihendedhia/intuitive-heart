@@ -2,7 +2,14 @@
   "name": "intuitive-heart",
   "private": true,
   "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  },
   "scripts": {
+    "clean": "rm -rf node_modules dist",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

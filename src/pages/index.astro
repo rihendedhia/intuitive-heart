@@ -1,11 +1,13 @@
 ---
 import Layout from '../components/Layout.astro';
 import BlogCard from '../components/BlogCard.astro';
+import InstagramFeed from '@components/InstagramFeed.astro';
+import VideoPlayer from '@components/VideoPlayer.astro';
 const baseURL = import.meta.env.BASE_URL;
 
 const posts = Object.entries(import.meta.glob('../content/blog/*.md', { eager: true })).map(
   ([path, module]) => {
-    const slug = path.split('/').pop().replace(/\.md$/, '');
+    const slug = path?.split('/').pop()?.replace(/\.md$/, '');
     return {
       slug,
       ...module,
@@ -50,10 +52,6 @@ const featuredPosts = posts
         <a href="#contact" class="ih-btn ih-btn-dark">Start a conversation ↗</a>
         <a href="#services" class="ih-btn ih-btn-outline">Explore sessions</a>
       </div>
-    </div>
-    <div class="ih-scroll-hint">
-      <div class="ih-scroll-line"></div>
-      <span>Scroll</span>
     </div>
   </section>
 
@@ -248,10 +246,13 @@ const featuredPosts = posts
             Every event is different. Tell me your vision and I'll curate something just for it.
           </p>
           <a
-            href="#contact"
+            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20a%20quote%20for%20an%20event."
+            target="_blank"
             class="ih-btn ih-btn-outline"
-            style="font-size:0.75rem;padding:0.5rem 1.2rem;">Get a quote →</a
+            style="font-size:0.75rem;padding:0.5rem 1.2rem;"
           >
+            Get a quote →
+          </a>
         </div>
       </div>
       <div class="ih-events-note ih-fade">
@@ -607,56 +608,53 @@ const featuredPosts = posts
         </p>
       </div>
       <div class="ih-pricing-grid ih-fade ih-fade-delay-1">
-        <div class="ih-price-card">
-          <div class="ih-price-dur">30 minutes</div>
-          <div class="ih-price-name">Quick Clarity</div>
-          <div class="ih-price-amt">₹1,500 <sub>/ session</sub></div>
-          <div class="ih-price-divider"></div>
-          <ul class="ih-price-list">
-            <li>One focused question or area</li>
-            <li>Tarot reading or NLP check-in</li>
-            <li>In-person (Juhu) or virtual</li>
-            <li>WhatsApp follow-up note</li>
-          </ul>
-          <a
-            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20reserve%20a%20Quick%20Clarity%20session%20(30%20min%20%E2%80%94%20%E2%82%B91500)"
-            target="_blank"
-            class="ih-btn ih-btn-dark ih-btn-full">Reserve via WhatsApp ↗</a
-          >
-        </div>
         <div class="ih-price-card featured">
-          <div class="ih-featured-badge">Most chosen</div>
+          <div class="ih-featured-badge">Tarot Reading</div>
           <div class="ih-price-dur">60 minutes</div>
-          <div class="ih-price-name">Deep Dive</div>
-          <div class="ih-price-amt">₹2,800 <sub>/ session</sub></div>
+          <div class="ih-price-name">Tarot Reading</div>
+          <div class="ih-price-amt">₹3,000 <sub>/ session</sub></div>
           <div class="ih-price-divider"></div>
           <ul class="ih-price-list">
-            <li>Full Tarot spread or NLP session</li>
-            <li>Clarity coaching woven in</li>
-            <li>In-person or virtual</li>
-            <li>Summary + action steps via WhatsApp</li>
+            <li>Full Tarot spread for clarity and direction</li>
+            <li>In-person (Juhu) or virtual</li>
+            <li>Session summary delivered via WhatsApp</li>
           </ul>
           <a
-            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20reserve%20a%20Deep%20Dive%20session%20(60%20min%20%E2%80%94%20%E2%82%B92800)"
+            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20book%20a%2060-minute%20Tarot%20Reading."
             target="_blank"
-            class="ih-btn ih-btn-dark ih-btn-full">Reserve via WhatsApp ↗</a
+            class="ih-btn ih-btn-dark ih-btn-full">Book a 60 min Tarot ↗</a
           >
         </div>
         <div class="ih-price-card">
-          <div class="ih-price-dur">Custom</div>
-          <div class="ih-price-name">Events &amp; Corporate</div>
-          <div class="ih-price-amt" style="font-size:1.4rem;">On request</div>
+          <div class="ih-price-dur">40 minutes</div>
+          <div class="ih-price-name">Tarot Reading</div>
+          <div class="ih-price-amt">₹2,500 <sub>/ session</sub></div>
           <div class="ih-price-divider"></div>
           <ul class="ih-price-list">
-            <li>Bespoke event experiences</li>
-            <li>Tarot corners &amp; wellness booths</li>
-            <li>Corporate offsite activations</li>
-            <li>Full-day packages available</li>
+            <li>Focused reading for one key theme</li>
+            <li>In-person or virtual</li>
+            <li>Actionable insight and next steps</li>
           </ul>
           <a
-            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20a%20quote%20for%20an%20event%20or%20corporate%20session."
+            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20book%20a%2040-minute%20Tarot%20Reading."
             target="_blank"
-            class="ih-btn ih-btn-teal ih-btn-full">Get a quote ↗</a
+            class="ih-btn ih-btn-dark ih-btn-full">Book a 40 min Tarot ↗</a
+          >
+        </div>
+        <div class="ih-price-card">
+          <div class="ih-price-dur">Per Session</div>
+          <div class="ih-price-name">NLP Session</div>
+          <div class="ih-price-amt">₹2,500 <sub>/ session</sub></div>
+          <div class="ih-price-divider"></div>
+          <ul class="ih-price-list">
+            <li>Pre-session intake form</li>
+            <li>10-minute pre-session planning call</li>
+            <li>A focused NLP session for deep change</li>
+          </ul>
+          <a
+            href="https://wa.me/919833595968?text=Hi%20Dhriti!%20I'd%20like%20to%20book%20an%20NLP%20Session."
+            target="_blank"
+            class="ih-btn ih-btn-dark ih-btn-full">Book NLP session ↗</a
           >
         </div>
       </div>
@@ -674,8 +672,8 @@ const featuredPosts = posts
         <h2 class="ih-title">Intentional <em>objects</em><br />for everyday ritual</h2>
         <p class="ih-body" style="max-width:600px;">
           Everything here is curated or created to support your inner work — between sessions, on
-          quiet mornings, and in the rituals that hold you together. From intention bath salts and
-          infused candles to affirmation cards, ritual kits, and books written by Dhriti.
+          quiet mornings, and in the rituals that hold you together. From intention bath salts to
+          affirmation cards, and books written by Dhriti.
         </p>
       </div>
       <div class="ih-shop-grid ih-fade ih-fade-delay-1">
@@ -687,18 +685,6 @@ const featuredPosts = posts
             <p class="ih-shop-desc">
               Handcrafted bath salts infused with intention — for releasing, grounding, and clearing
               energy after a long day or session.
-            </p>
-            <div class="ih-shop-cta">Coming soon ↗</div>
-          </div>
-        </div>
-        <div class="ih-shop-card">
-          <div class="ih-shop-thumb ih-shop-thumb-2">🕯️</div>
-          <div class="ih-shop-body">
-            <div class="ih-shop-cat">Candles</div>
-            <div class="ih-shop-name">Infused Ritual Candles</div>
-            <p class="ih-shop-desc">
-              Hand-poured candles infused with herbs, oils, and intention — each one crafted for a
-              specific energy: clarity, love, protection, abundance.
             </p>
             <div class="ih-shop-cta">Coming soon ↗</div>
           </div>
@@ -726,24 +712,6 @@ const featuredPosts = posts
               space for her debut title.
             </p>
             <div class="ih-shop-cta">Notify me when live ↗</div>
-          </div>
-        </div>
-        <div class="ih-shop-card" style="border-color:rgba(91,154,160,0.2);">
-          <div
-            class="ih-shop-thumb"
-            style="background:linear-gradient(135deg,rgba(91,154,160,0.1),rgba(155,142,196,0.08));"
-          >
-            🌿
-          </div>
-          <div class="ih-shop-body">
-            <div class="ih-shop-cat" style="color:var(--teal);">Ritual Kits</div>
-            <div class="ih-shop-name">Curated Ritual Sets</div>
-            <p class="ih-shop-desc">
-              Thoughtfully bundled sets — bath salts, a candle, and affirmation cards — gifted
-              together as a complete inner-work starter kit or a meaningful present for someone you
-              love.
-            </p>
-            <div class="ih-shop-cta" style="color:var(--teal);">Coming soon ↗</div>
           </div>
         </div>
       </div>
@@ -815,6 +783,16 @@ const featuredPosts = posts
     </div>
   </section>
 
+  <InstagramFeed />
+
+  <VideoPlayer
+    title="An Invitation into Presence"
+    subtitle="A visual introduction to the healing space, alignment frameworks, and restorative practice."
+    videoSrc="/videos/video-1.mp4"
+    thumbnail="/gallery/image-1.jpeg"
+    aspectRatio="horizontal"
+  />
+
   <section class="ih-section ih-contact" id="contact">
     <div class="ih-container">
       <div class="ih-fade">
@@ -839,15 +817,30 @@ const featuredPosts = posts
               <div class="ih-contact-block-sub">Replies within 2 working days</div>
             </div>
             <div>
+              <div class="ih-contact-block-label">Email</div>
+              <div class="ih-contact-block-val">
+                <a href="mailto:hello@intuitiveheart.co">hello@intuitiveheart.co</a>
+              </div>
+              <div class="ih-contact-block-sub">For corporate or event enquiries</div>
+            </div>
+            <div>
               <div class="ih-contact-block-label">Follow along</div>
-              <div class="ih-contact-socials">
+              <div class="ih-contact-block-socials">
                 <a
                   href="https://www.instagram.com/intuitiveheartbydhriti/"
                   target="_blank"
                   class="ih-social-btn">Instagram</a
                 >
-                <a href="#" class="ih-social-btn">LinkedIn</a>
-                <a href="#" class="ih-social-btn">YouTube</a>
+                <a
+                  href="https://www.linkedin.com/in/dhritilakhani2099"
+                  target="_blank"
+                  class="ih-social-btn">LinkedIn</a
+                >
+                <a
+                  href="https://www.youtube.com/@IntuitiveHeartbyDhriti"
+                  target="_blank"
+                  class="ih-social-btn">YouTube</a
+                >
               </div>
             </div>
             <div
@@ -888,7 +881,8 @@ const featuredPosts = posts
                 <option>Event — Brand Launch / Pop-up</option>
                 <option>Corporate Wellness Programme</option>
                 <option>Corporate — 1:1 Employee Sessions</option>
-                <option>Shop — Bath Salts / Candles / Cards Waitlist</option>
+                <option>Shop — Bath Salts</option>
+                <option>Shop — Affirmation Cards</option>
                 <option>Shop — Books by Dhriti — Notify Me</option>
                 <option>Not sure — help me figure it out</option>
               </select>

@@ -148,13 +148,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: any
 } & { render(): Render[".md"] };
-"test-blog.md.md": {
-	id: "test-blog.md.md";
-  slug: "test-blogmd";
-  body: string;
-  collection: "blog";
-  data: any
-} & { render(): Render[".md"] };
 "the-belief-running-your-life.md": {
 	id: "the-belief-running-your-life.md";
   slug: "the-belief-running-your-life";
