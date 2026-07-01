@@ -602,6 +602,7 @@ input {
   gap: 0.6rem;
   justify-content: center;
   margin-bottom: 2.8rem;
+  max-width: 600px;
 }
 
 .ih-tag {
@@ -1465,17 +1466,68 @@ input {
 }
 
 .ih-testi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+}
+
+.ih-testi-track {
+  display: flex;
   gap: 1.2rem;
-  margin-top: 3rem;
+  width: max-content;
+  animation: autoScrollTestimonials 60s linear infinite;
+}
+
+.ih-testi-grid:hover .ih-testi-track {
+  animation-play-state: paused;
 }
 
 .ih-testi-card {
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.8rem;
+  padding: 1.6rem;
+  flex: 0 0 min(350px, 84vw);
+  min-height: 300px;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ih-testi-card--expand::after {
+  content: 'Read more';
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lavender);
+}
+
+.ih-testi-card:hover,
+.ih-testi-card:focus-within {
+  max-height: none;
+  overflow: visible;
+}
+
+.ih-testi-card--expand:hover::after,
+.ih-testi-card--expand:focus-within::after {
+  display: none;
+}
+
+@keyframes autoScrollTestimonials {
+  0%,
+  10% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .ih-testi-quote {
@@ -1483,30 +1535,30 @@ input {
   color: var(--lavender);
   opacity: 0.25;
   line-height: 1;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   font-family: Georgia, serif;
 }
 
 .ih-testi-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 300;
   font-style: italic;
   color: var(--ink-soft);
   line-height: 1.7;
-  margin-bottom: 1.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.ih-testi-name {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.ih-testi-tag {
-  font-size: 0.72rem;
-  color: var(--stone);
-  margin-top: 0.2rem;
+.ih-testi-card:hover .ih-testi-text,
+.ih-testi-card:focus-within .ih-testi-text {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
 }
 
 .ih-blog {
