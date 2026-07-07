@@ -1475,7 +1475,7 @@ input {
   display: flex;
   gap: 1.2rem;
   width: max-content;
-  animation: autoScrollTestimonials 60s linear infinite;
+  animation: autoScrollTestimonials 200s linear infinite;
 }
 
 .ih-testi-grid:hover .ih-testi-track {
